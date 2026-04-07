@@ -52,6 +52,15 @@ export type VideoBlock = ItemTypeDefinition<
     };
   }
 >;
+export type SchemaMigration = ItemTypeDefinition<
+  EnvironmentSettings,
+  'SpLYCN0pTX2J4XUj09ALMA',
+  {
+    name: {
+      type: 'string';
+    };
+  }
+>;
 export type AnyBlock = ImageBlock | ImageGalleryBlock | VideoBlock;
-export type AnyModel = Page;
+export type AnyModel = Page | SchemaMigration;
 export type AnyBlockOrModel = AnyBlock | AnyModel;

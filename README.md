@@ -106,6 +106,36 @@ The implementation consists of three parts:
 
 For more details, see the [package documentation](https://www.npmjs.com/package/@datocms/content-link).
 
+## Running DatoCMS migrations
+
+This project stores schema changes in the `migrations` directory. A common workflow is:
+
+1. Run pending migrations in a sandbox environment.
+2. Validate the schema/content in that sandbox.
+3. Promote the sandbox to primary.
+
+### Typical commands
+
+Run migrations in (or create) a sandbox named `feature-branch`:
+
+```bash
+npx dotenv -c -- bash -c 'datocms migrations:run --destination=feature-branch --api-token $DATOCMS_API_TOKEN'
+```
+
+If `feature-branch` already exists, run pending migrations in-place:
+
+```bash
+npx dotenv -c -- bash -c 'datocms migrations:run --source=feature-branch --in-place --api-token $DATOCMS_API_TOKEN'
+```
+
+Promote sandbox changes:
+
+```bash
+npx dotenv -c -- bash -c 'datocms environments:promote feature-branch --api-token $DATOCMS_API_TOKEN'
+```
+
+If you need `main` to remain primary by name in your workflow, promote `main` back after the promotion step.
+
 ## Updating the GraphQL schema
 
 When the DatoCMS schema, which includes various models and fields, undergoes any updates or modifications, it is essential to ensure that these changes are properly reflected in your local development environment. To accomplish this, you should locally run the following command:
