@@ -28,7 +28,7 @@ export async function recordToWebsiteRoute(
   switch (item.__itemTypeId) {
     // Page model
     case 'JdG722SGTSG_jEB1Jx-0XA': {
-      return `/real-time-updates/${item.attributes.slug}`;
+      return `/basic/page/${item.attributes.slug}`;
     }
     default:
       return null;
