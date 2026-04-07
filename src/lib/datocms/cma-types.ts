@@ -2,15 +2,6 @@ import type { ItemTypeDefinition } from '@datocms/cma-client';
 type EnvironmentSettings = {
   locales: 'en';
 };
-export type ImageGalleryBlock = ItemTypeDefinition<
-  EnvironmentSettings,
-  'CoOdvsbUR8GLtGeuenXzMw',
-  {
-    assets: {
-      type: 'gallery';
-    };
-  }
->;
 export type Page = ItemTypeDefinition<
   EnvironmentSettings,
   'JdG722SGTSG_jEB1Jx-0XA',
@@ -43,6 +34,15 @@ export type ImageBlock = ItemTypeDefinition<
     };
   }
 >;
+export type ImageGalleryBlock = ItemTypeDefinition<
+  EnvironmentSettings,
+  'CoOdvsbUR8GLtGeuenXzMw',
+  {
+    assets: {
+      type: 'gallery';
+    };
+  }
+>;
 export type VideoBlock = ItemTypeDefinition<
   EnvironmentSettings,
   'duRvS1PrT4u6QGJZUmyINA',
@@ -52,6 +52,6 @@ export type VideoBlock = ItemTypeDefinition<
     };
   }
 >;
-export type AnyBlock = ImageGalleryBlock | ImageBlock | VideoBlock;
+export type AnyBlock = ImageBlock | ImageGalleryBlock | VideoBlock;
 export type AnyModel = Page;
 export type AnyBlockOrModel = AnyBlock | AnyModel;
