@@ -86,9 +86,7 @@ export default function KitchenSinkPage() {
 
       <section>
         <h2>Shared helper components</h2>
-        <HeadingWithAnchorLink node={sampleHeadingNode}>
-          Kitchen Sink Heading
-        </HeadingWithAnchorLink>
+        <HeadingWithAnchorLink node={sampleHeadingNode}>Kitchen Sink Heading</HeadingWithAnchorLink>
         <Code node={sampleCodeNode} />
         <DraftModeToggler draftModeEnabled={false} />
         <div className="flex flex-wrap gap-4">

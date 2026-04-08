@@ -16,7 +16,9 @@ export const Accordion = ({ id, title, items }: IProps) => {
     <section className="c-accordion py-12 xl:py-16" id={id}>
       <Container size="2xl">
         <div className="grid grid-cols-12 gap-x-4 lg:gap-x-6">
-          <div className="col-span-full mb-6 lg:col-span-3 lg:mb-0">{title && <H2>{title}</H2>}</div>
+          <div className="col-span-full mb-6 lg:col-span-3 lg:mb-0">
+            {title && <H2>{title}</H2>}
+          </div>
 
           <div className="col-span-full lg:col-span-9">
             <RadixAccordion.Root type="multiple">

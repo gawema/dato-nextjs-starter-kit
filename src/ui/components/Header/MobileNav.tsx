@@ -74,10 +74,7 @@ export const MobileNav = ({ links, currentLang, settings }: IProps) => {
         </button>
       </Container>
 
-      <div
-        className="bg-primary fixed inset-0 z-50 translate-x-full lg:hidden"
-        ref={menuPanelRef}
-      >
+      <div className="bg-primary fixed inset-0 z-50 translate-x-full lg:hidden" ref={menuPanelRef}>
         <div className="flex h-full w-full flex-col items-center justify-between gap-32 pt-8 pb-16">
           <div>
             <button
@@ -112,7 +109,11 @@ export const MobileNav = ({ links, currentLang, settings }: IProps) => {
           </nav>
           <div className="flex gap-2 uppercase">
             {Object.entries(i18n.routes).map(([key, value]) => (
-              <Link key={key} href={value} className={classNames({ 'opacity-20': key === currentLang })}>
+              <Link
+                key={key}
+                href={value}
+                className={classNames({ 'opacity-20': key === currentLang })}
+              >
                 {key}
               </Link>
             ))}

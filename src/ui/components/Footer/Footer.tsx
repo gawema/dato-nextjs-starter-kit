@@ -1,10 +1,6 @@
 import { htmlToReact } from '@/lib/data/transformers/htmlToReact';
 import { IImage, IImageLink, ILink } from '@/ui/types/commonTypes';
-import {
-  HiOutlineLocationMarker,
-  HiOutlineMail,
-  HiOutlinePhone,
-} from 'react-icons/hi';
+import { HiOutlineLocationMarker, HiOutlineMail, HiOutlinePhone } from 'react-icons/hi';
 import Image from 'next/image';
 import { Anchor } from '../base/Anchor';
 import { Container } from '../helpers/Container';
@@ -98,12 +94,7 @@ export const Footer = ({
             <div className="flex flex-col gap-4">
               <h3 className="mb-4 text-sm font-bold">Social Media</h3>
               {socials.map((item) => (
-                <Anchor
-                  key={item.href}
-                  href={item.href}
-                  target={item.target}
-                  className="text-lg"
-                >
+                <Anchor key={item.href} href={item.href} target={item.target} className="text-lg">
                   {item.title}
                 </Anchor>
               ))}

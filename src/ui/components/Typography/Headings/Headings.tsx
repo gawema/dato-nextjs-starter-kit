@@ -9,11 +9,7 @@ interface IProps {
 
 const headingsCommonClasses = 'text-pretty font-bold mb-4 font-secondary';
 
-export const HDisplay = ({
-  children,
-  className,
-  as = 'h1',
-}: PropsWithChildren<IProps>) => {
+export const HDisplay = ({ children, className, as = 'h1' }: PropsWithChildren<IProps>) => {
   const Tag = as;
 
   return (

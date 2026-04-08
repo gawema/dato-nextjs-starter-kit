@@ -37,7 +37,11 @@ export const Header = ({ logo, links, currentLang, settings }: IProps) => {
 
             <li className="flex gap-2 uppercase">
               {Object.entries(i18n.routes).map(([key, value]) => (
-                <Link key={key} href={value} className={classNames({ 'opacity-20': key === currentLang })}>
+                <Link
+                  key={key}
+                  href={value}
+                  className={classNames({ 'opacity-20': key === currentLang })}
+                >
                   {key}
                 </Link>
               ))}

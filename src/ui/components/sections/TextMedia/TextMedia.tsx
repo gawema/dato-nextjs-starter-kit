@@ -16,7 +16,10 @@ interface IProps {
 
 export const TextMedia = ({ id, title, text, image, bgColor = 'white' }: IProps) => {
   return (
-    <section className={classNames('c-text-media py-12 xl:py-16', { 'bg-yellow': bgColor === 'yellow' })} id={id}>
+    <section
+      className={classNames('c-text-media py-12 xl:py-16', { 'bg-yellow': bgColor === 'yellow' })}
+      id={id}
+    >
       <Container size="2xl">
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           <div className="flex flex-col justify-between">
@@ -27,7 +30,12 @@ export const TextMedia = ({ id, title, text, image, bgColor = 'white' }: IProps)
           <div>
             {image && (
               <div className="aspect-portrait-mobile xl:aspect-portrait-desktop relative">
-                <Image src={image.src} alt={image.alt} fill className="object-cover object-center" />
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  className="object-cover object-center"
+                />
               </div>
             )}
           </div>
