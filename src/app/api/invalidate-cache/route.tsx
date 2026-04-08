@@ -1,4 +1,4 @@
-import { cacheTag } from '@/lib/datocms/executeQuery';
+import { buildDatoCacheTags, DATOCMS_BASE_CACHE_TAG } from '@/lib/datocms/cacheTags';
 import { revalidateTag } from 'next/cache';
 import type { NextRequest, NextResponse } from 'next/server';
 import { handleUnexpectedError, invalidRequestResponse, successfulResponse } from '../utils';
@@ -29,7 +29,27 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       return invalidRequestResponse('Invalid token', 401);
     }
 
-    revalidateTag(cacheTag, 'default');
+    const payload = (await req.json().catch(() => null)) as {
+      entity?: {
+        id?: string;
+        attributes?: {
+          api_key?: string;
+          slug?: string;
+          locale?: string;
+        };
+      };
+    } | null;
+
+    const tags = buildDatoCacheTags({
+      modelApiKey: payload?.entity?.attributes?.api_key,
+      recordId: payload?.entity?.id,
+      slug: payload?.entity?.attributes?.slug,
+      locale: payload?.entity?.attributes?.locale,
+    });
+
+    for (const tag of tags.length > 0 ? tags : [DATOCMS_BASE_CACHE_TAG]) {
+      revalidateTag(tag, 'default');
+    }
 
     return successfulResponse();
   } catch (error) {

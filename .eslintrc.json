@@ -1,0 +1,16 @@
+{
+  "extends": ["next/core-web-vitals"],
+  "overrides": [
+    {
+      "files": ["src/ui/**/*.{ts,tsx}"],
+      "rules": {
+        "no-restricted-imports": [
+          "error",
+          {
+            "patterns": ["@/lib/datocms/*", "@/lib/data/access/*", "@/lib/data/transformers/*"]
+          }
+        ]
+      }
+    }
+  ]
+}

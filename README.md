@@ -59,6 +59,7 @@ Then set the following additional variables:
 
 - `DATOCMS_BASE_EDITING_URL`: Your DatoCMS project URL (e.g., `https://your-project.admin.datocms.com`). This enables click-to-edit overlays that link content directly to the DatoCMS editor.
 - `SECRET_API_TOKEN`: A secure string (you can use `openssl rand -hex 32` or any other cryptographically-secure random string generator). It will be used to safeguard all route handlers from incoming requests from untrusted sources.
+- `DATOCMS_PAGE_MODEL_ID` (optional): Dato model ID used for page route resolution in plugin callbacks. If omitted, the starter uses the default migration model ID.
 
 #### Run your project locally
 
@@ -105,6 +106,27 @@ The implementation consists of three parts:
 3. **Layout integration** (`src/app/layout.tsx:41`): The ContentLink component is rendered only in draft mode
 
 For more details, see the [package documentation](https://www.npmjs.com/package/@datocms/content-link).
+
+## Starter architecture conventions
+
+This starter now follows a CMS adapter architecture so UI stays reusable across CMS providers:
+
+- `src/lib/data/access`: CMS adapter entrypoints (`getPageData`, metadata helpers, etc.)
+- `src/lib/data/transformers`: raw CMS records -> neutral section and media models
+- `src/lib/data/types`: CMS-neutral models consumed by app routes/UI
+- `src/ui`: presentational components and section registry
+
+To keep boundaries clean over time, `src/ui` is lint-restricted from importing `src/lib/datocms` and data access/transformer modules directly.
+
+## Styling strategy
+
+The default strategy is **tokens + lightweight CSS utilities** (no Tailwind requirement in the base kit):
+
+- global tokens live in `src/app/global.css`
+- reusable utility classes live in `src/ui/styles/utilities.css`
+- sections should prefer utility classes (for example `u-gallery`, `u-pill`) plus component-scoped markup
+
+This keeps onboarding simple while allowing projects to add Tailwind later without rewriting the adapter architecture.
 
 ## Running DatoCMS migrations
 

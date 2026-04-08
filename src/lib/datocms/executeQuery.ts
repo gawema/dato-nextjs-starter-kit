@@ -1,7 +1,6 @@
 import { executeQuery as libExecuteQuery } from '@datocms/cda-client';
 import type { TadaDocumentNode } from 'gql.tada';
-
-export const cacheTag = 'datocms';
+import { buildDatoCacheTags, DATOCMS_BASE_CACHE_TAG } from './cacheTags';
 
 /**
  * Executes a GraphQL query using the DatoCMS Content Delivery API, and caches
@@ -57,7 +56,7 @@ export async function executeQuery<Result, Variables>(
        * For more info: https://www.datocms.com/docs/next-js/using-cache-tags
        */
       next: {
-        tags: [cacheTag],
+        tags: buildDatoCacheTags({ additional: options?.cacheTags }),
       },
     },
   });
@@ -68,4 +67,5 @@ export async function executeQuery<Result, Variables>(
 type ExecuteQueryOptions<Variables> = {
   variables?: Variables;
   includeDrafts?: boolean;
+  cacheTags?: string[];
 };

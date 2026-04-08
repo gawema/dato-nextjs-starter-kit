@@ -14,6 +14,10 @@ export default function Page() {
           <Link href="/basic">Basic:</Link> <span>Simpler code, great to start exploring</span>
         </li>
         <li>
+          <Link href="/kitchen-sink">Kitchen Sink:</Link>{' '}
+          <span>Showcase of reusable starter components and section UI</span>
+        </li>
+        <li>
           <Link href="/real-time-updates">Real-time Updates:</Link>{' '}
           <span>
             Slightly more complex code, but content updates in real-time when Draft Mode is on

@@ -9,6 +9,7 @@
  */
 import type { RawApiTypes } from '@datocms/cma-client';
 import type { AnyModel } from './cma-types';
+import { isPageModel, modelRouting } from './modelRouting';
 
 /*
  * Both the "Web Previews" and "SEO/Readability Analysis" plugins from DatoCMS
@@ -25,30 +26,20 @@ export async function recordToWebsiteRoute(
   item: RawApiTypes.Item<AnyModel>,
   _locale: string,
 ): Promise<string | null> {
-  switch (item.__itemTypeId) {
-    // Page model
-    case 'JdG722SGTSG_jEB1Jx-0XA': {
-      return `/basic/page/${item.attributes.slug}`;
-    }
-    default:
-      return null;
+  if (item.__itemTypeId && isPageModel(item.__itemTypeId) && 'slug' in item.attributes) {
+    return `${modelRouting.page.websitePath}/${item.attributes.slug}`;
   }
+
+  return null;
 }
 
 export async function recordToSlug(
   item: RawApiTypes.Item<AnyModel>,
   _locale: string,
 ): Promise<string | null> {
-  switch (item.__itemTypeId) {
-    // Page model
-    case 'JdG722SGTSG_jEB1Jx-0XA': {
-      /*
-       * Using generated types, TypeScript knows exactly which fields exist.
-       * `item.attributes.slug` is fully typed - no casts needed!
-       */
-      return item.attributes.slug;
-    }
-    default:
-      return null;
+  if (item.__itemTypeId && isPageModel(item.__itemTypeId) && 'slug' in item.attributes) {
+    return item.attributes.slug;
   }
+
+  return null;
 }

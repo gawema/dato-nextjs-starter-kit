@@ -54,6 +54,7 @@ export default async function RootLayout({
           <nav>
             <a href="https://www.datocms.com/docs/next-js">📚 Full Integration Guide</a>
             <a href="/basic">🔧 Basic Route</a>
+            <a href="/kitchen-sink">🧪 Kitchen Sink</a>
             <a href="/real-time-updates">⚡️ Real-time Updates Route</a>
           </nav>
           <DraftModeToggler draftModeEnabled={isDraftModeEnabled} />
